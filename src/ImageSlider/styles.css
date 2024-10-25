@@ -1,0 +1,50 @@
+ .container {
+   position: relative;
+   display: flex;
+   width: 600px;
+   height: 450px;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .arrow {
+   position: absolute;
+   filter: drop-shadow(0px 0px 5px #181817);
+   cursor: pointer;
+ }
+
+ .arrow-left {
+   left: 1rem;
+ }
+
+ .arrow-right {
+   right: 1rem;
+ }
+
+ .current-image {
+   border-radius: 0.5rem;
+   height: 100%;
+   width: 100%;
+ }
+
+ .hide-current-image {
+   display: none;
+ }
+
+ .indicator {
+   position: absolute;
+   bottom: 1rem;
+ }
+
+ .current-indicator {
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   padding: 0;
+   margin: 2px;
+   background-color: #ffffffd3;
+ }
+
+ .inactive {
+   background-color: #d1c5c5de;
+ }
