@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 import './styles.css';
 
-const ImageSlider = ({ url, limit, page }) => {
+const ImageSlider = ({ url }) => {
   const [images, setImages] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -15,15 +15,15 @@ const ImageSlider = ({ url, limit, page }) => {
     try {
       setLoading(true);
 
-      const response = await fetch(`${url}?page=${page}&limit=${limit}`);
+      const response = await fetch(`${url}?page=2&limit=10`);
       const data = await response.json();
 
       if (data) {
         setImages(data);
-        setLoading(false);
       }
     } catch (error) {
       console.error('Error fetching data', error);
+    } finally {
       setLoading(false);
     }
   };
@@ -31,8 +31,6 @@ const ImageSlider = ({ url, limit, page }) => {
   useEffect(() => {
     if (url !== '') fetchImages(url);
   }, [url]);
-
-  console.log(images);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -55,6 +53,12 @@ const ImageSlider = ({ url, limit, page }) => {
           className='arrow arrow-left'
           onClick={handlePreviousImage}
         />
+        <FaRegArrowAltCircleRight
+          size={40}
+          className='arrow arrow-right'
+          onClick={handleNextImage}
+        />
+
         {images && images.length
           ? images.map((image, i) => (
               <img
@@ -69,11 +73,6 @@ const ImageSlider = ({ url, limit, page }) => {
               />
             ))
           : null}
-        <FaRegArrowAltCircleRight
-          size={40}
-          className='arrow arrow-right'
-          onClick={handleNextImage}
-        />
 
         <span className='indicator'>
           {images && images.length
@@ -99,6 +98,4 @@ export default ImageSlider;
 
 ImageSlider.propTypes = {
   url: PropTypes.string.isRequired,
-  limit: PropTypes.string.isRequired,
-  page: PropTypes.string.isRequired,
 };
