@@ -41,10 +41,8 @@ const ImageSlider = ({ url }) => {
   };
   const handleNextImage = () => {
     setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  console.log(currentSlide);
-
+  }; 
+  
   return (
     <>
       <div className='container'>
