@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import {
   FaRegArrowAltCircleLeft,
   FaRegArrowAltCircleRight,
@@ -94,7 +94,7 @@ const ImageSlider = ({ url }) => {
   );
 };
 
-export default ImageSlider;
+export default memo(ImageSlider);
 
 ImageSlider.propTypes = {
   url: PropTypes.string.isRequired,
