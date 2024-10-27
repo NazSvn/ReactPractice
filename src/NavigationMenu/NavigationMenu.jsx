@@ -6,8 +6,10 @@ const NavigationMenu = () => {
   const data = menu;
   return (
     <>
-      <div className='nav-menu-container'>
-        <NavigationList list={data} />
+      <div className='nav-menu-wrapper'>
+        <div className='nav-menu-container'>
+          <NavigationList list={data} />
+        </div>
       </div>
     </>
   );

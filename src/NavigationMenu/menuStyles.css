@@ -1,10 +1,11 @@
-.nav-menu-container { 
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  top: 0;
-  width: 400px;
+.nav-menu-wrapper {
+  width: 100dvw;
+  height: 100dvh;
+}
 
+.nav-menu-container {
+  width: 400px;
+  height: 100%;
 }
 
 .nav-ul {
@@ -16,6 +17,7 @@
 .nav-li {
   list-style: none;
   margin-left: 10px;
+
 }
 
 .nav-item-label {
