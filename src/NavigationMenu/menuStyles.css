@@ -1,0 +1,42 @@
+.nav-menu-container { 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 400px;
+
+}
+
+.nav-ul {
+  padding-left: 15px;
+  /* Indent nested levels */
+  margin: 0;
+}
+
+.nav-li {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.nav-item-label {
+  font-size: 1.2rem;
+}
+
+.nav-item-label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.item-label-button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-size: 1.2rem;
+
+}
+
+.item-label-button:focus {
+  outline: none;
+}
