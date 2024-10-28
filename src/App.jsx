@@ -4,38 +4,34 @@ import RandomColor from './ColorGenerator/RandomColor';
 import ImageSlider from './ImageSlider/ImageSlider';
 import LoadMore from './LoadMore/LoadMore';
 import NavigationMenu from './NavigationMenu/NavigationMenu';
+import QrCodeGenerator from './QrCodeGenerator/QrCodeGenerator';
 import StarRating from './StarRating/StarRating';
-
- 
 
 function App() {
   return (
     <>
       {/* accorrdion element */}
-
-      <Accordion />
+      {/* <Accordion /> */}
 
       {/* Star Rating element */}
-
-      <StarRating />
+      {/* <StarRating /> */}
 
       {/* Color generator element */}
-
-      <RandomColor />
+      {/* <RandomColor /> */}
 
       {/* Image slider element */}
-
-      <ImageSlider
+      {/* <ImageSlider
         url={'https://picsum.photos/v2/list'}         
-      />
+      /> */}
 
       {/* Load more element */}
-
-      <LoadMore />
+      {/* <LoadMore /> */}
 
       {/* Navigation Menu */}
+      {/* <NavigationMenu /> */}
 
-      <NavigationMenu />
+      {/* Qr code generator */}
+      <QrCodeGenerator />
     </>
   );
 }
