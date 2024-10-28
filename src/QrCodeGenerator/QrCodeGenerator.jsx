@@ -5,10 +5,22 @@ const QrCodeGenerator = () => {
   const [input, setInput] = useState('');
   const [value, setValue] = useState('');
   const qrRef = useRef();
+  const inputRef = useRef();
 
   const handleGenerateQr = () => {
     setValue(input);
     setInput('');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleGenerateQr();
+    }
+
+    if (e.key === 'Escape') {
+      setInput('');
+      inputRef.current.blur();
+    }
   };
 
   const handleDownload = () => {
@@ -55,10 +67,12 @@ const QrCodeGenerator = () => {
         <div style={{ textAlign: 'center', padding: '20px' }}>
           <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
             <input
+              ref={inputRef}
               type='text'
               placeholder='Enter text fo QR code'
               id='QrCodeGenerator'
               onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => handleKeyDown(e)}
               value={input}
               style={{
                 padding: '10px',
@@ -69,6 +83,7 @@ const QrCodeGenerator = () => {
             />
             <button
               onClick={handleGenerateQr}
+              disabled={input && input.trim() !== '' ? false : true}
               style={{ width: '260px' }}
             >
               Generate Qr Code
@@ -82,6 +97,7 @@ const QrCodeGenerator = () => {
             />
           </div>
           <button
+            disabled={value === '' ? true : false}
             onClick={handleDownload}
             style={{ marginTop: '10px', padding: '10px 20px' }}
           >
