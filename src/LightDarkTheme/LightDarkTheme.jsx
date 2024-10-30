@@ -7,8 +7,6 @@ const LightDarkTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  console.log(theme);
-
   return (
     <>
       <div
@@ -18,7 +16,7 @@ const LightDarkTheme = () => {
         <div className='light-dark-mode-container'>
           <p className='light-dark-mode-text'>Hi there!</p>
           <button
-            className='light-dark-mode-button'
+            className='light-dark-mode'
             onClick={toggleTheme}
           >
             Switch to {theme === 'light' ? 'dark' : 'light'} Theme
