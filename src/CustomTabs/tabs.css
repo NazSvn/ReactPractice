@@ -1,0 +1,34 @@
+.tabs-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs-header {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tab-label {
+  padding: 10px 15px;
+  background-color: #363333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 5px;
+}
+
+.tab-label.active {
+  background-color: #83926c77;
+  color: white;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 20px;
+  border-top: 2px solid #ddd;
+}
