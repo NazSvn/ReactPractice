@@ -10,7 +10,7 @@ const LightDarkTheme = () => {
   return (
     <>
       <div
-        className='light-dark-mode-wrapper'
+        className='wrapper'
         data-theme={theme}
       >
         <div className='light-dark-mode-container'>

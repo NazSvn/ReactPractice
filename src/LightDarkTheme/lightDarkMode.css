@@ -10,11 +10,6 @@
   --button-bg-color: #1a1a1a;
 }
 
-.light-dark-mode-wrapper {
-  height: 100dvh;
-  width: 100dvw;
-}
-
 .light-dark-mode-container {
   background-color: var(--background);
   color: var(--text-color);

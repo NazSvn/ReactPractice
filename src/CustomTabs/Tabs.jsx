@@ -14,7 +14,7 @@ const Tabs = ({ tabsContent }) => {
 
   return (
     <>
-      <div className='tabs-wrapper'>
+      <div className='wrapper'>
         <div className='tabs-header'>
           {tabsContent.map((tabItem, i) => (
             <div

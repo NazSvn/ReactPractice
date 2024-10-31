@@ -5,6 +5,7 @@ import TabsTest from './CustomTabs/TabsTest';
 import ImageSlider from './ImageSlider/ImageSlider';
 import LightDarkTheme from './LightDarkTheme/LightDarkTheme';
 import LoadMore from './LoadMore/LoadMore';
+import Modaltest from './Modal/ModalTest';
 import NavigationMenu from './NavigationMenu/NavigationMenu';
 import QrCodeGenerator from './QrCodeGenerator/QrCodeGenerator';
 import ScrollProgress from './ScrollProgress/ScrollProgress';
@@ -42,6 +43,9 @@ function App() {
 
       {/* Tabs  */}
       <TabsTest />
+
+      {/* Modal  */}
+      <Modaltest />
     </>
   );
 }

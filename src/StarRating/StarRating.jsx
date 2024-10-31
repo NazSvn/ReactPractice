@@ -20,7 +20,10 @@ const StarRating = ({ numOfStars = 10 }) => {
 
   return (
     <>
-      <div>
+      <div
+        className='wrapper'
+        style={{ flexDirection: 'row' }}
+      >
         {[...Array(numOfStars)].map((_, i) => {
           const starNumber = (i += 1);
           return (

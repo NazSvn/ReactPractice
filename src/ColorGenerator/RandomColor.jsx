@@ -27,7 +27,7 @@ const RandomColor = () => {
 
   return (
     <>
-      <div style={{ ...wrapperStyle(bgColor) }}>
+      <div className='wrapper' style={{ backgroundColor: bgColor }}>
         <div>
           <button onClick={() => setColorType('hex')}>Get Hex Color</button>
           <button onClick={() => setColorType('rgb')}>Get rgb Color</button>
@@ -48,15 +48,6 @@ const RandomColor = () => {
     </>
   );
 };
-
-const wrapperStyle = (bgColor) => ({
-  height: '100vh',
-  width: '100vw',
-  background: bgColor,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-});
 
 const colorDisplayStyle = (bgColor) => ({
   color:

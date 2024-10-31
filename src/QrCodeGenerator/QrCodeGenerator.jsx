@@ -56,14 +56,7 @@ const QrCodeGenerator = () => {
 
   return (
     <>
-      <div
-        style={{
-          height: '100dvh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div className='wrapper'>
         <div style={{ textAlign: 'center', padding: '20px' }}>
           <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
             <input

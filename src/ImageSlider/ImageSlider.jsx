@@ -41,52 +41,54 @@ const ImageSlider = ({ url }) => {
   };
   const handleNextImage = () => {
     setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  }; 
-  
+  };
+
   return (
     <>
-      <div className='container'>
-        <FaRegArrowAltCircleLeft
-          size={40}
-          className='arrow arrow-left'
-          onClick={handlePreviousImage}
-        />
-        <FaRegArrowAltCircleRight
-          size={40}
-          className='arrow arrow-right'
-          onClick={handleNextImage}
-        />
+      <div className='wrapper'>
+        <div className='container'>
+          <FaRegArrowAltCircleLeft
+            size={40}
+            className='arrow arrow-left'
+            onClick={handlePreviousImage}
+          />
+          <FaRegArrowAltCircleRight
+            size={40}
+            className='arrow arrow-right'
+            onClick={handleNextImage}
+          />
 
-        {images && images.length
-          ? images.map((image, i) => (
-              <img
-                key={image.id}
-                className={
-                  currentSlide === i
-                    ? 'current-image'
-                    : 'current-image hide-current-image'
-                }
-                src={image.download_url}
-                alt={image.download_url}
-              />
-            ))
-          : null}
-
-        <span className='indicator'>
           {images && images.length
-            ? images.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentSlide(i)}
+            ? images.map((image, i) => (
+                <img
+                  key={image.id}
                   className={
                     currentSlide === i
-                      ? 'current-indicator'
-                      : 'current-indicator inactive'
+                      ? 'current-image'
+                      : 'current-image hide-current-image'
                   }
-                ></button>
+                  src={image.download_url}
+                  alt={image.download_url}
+                />
               ))
             : null}
-        </span>
+
+          <span className='indicator'>
+            {images && images.length
+              ? images.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={
+                      currentSlide === i
+                        ? 'current-indicator'
+                        : 'current-indicator inactive'
+                    }
+                  ></button>
+                ))
+              : null}
+          </span>
+        </div>
       </div>
     </>
   );
