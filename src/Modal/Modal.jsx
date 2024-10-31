@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './modal.css';
 
-const Modal = ({ id, header, body, footer, toggleModal }) => {
+const Modal = ({ id, header, body, footer, toggleModal, isClosing }) => {
   return (
     <>
       <div
@@ -11,7 +11,7 @@ const Modal = ({ id, header, body, footer, toggleModal }) => {
         role='dialog'
         aria-modal='true'
       >
-        <div className='modal-content'>
+        <div className={`modal-content ${isClosing ? 'is-closing' : ''}`}>
           <div
             id={header || 'modal-header'}
             className='modal-header'
@@ -50,4 +50,5 @@ Modal.propTypes = {
   body: PropTypes.node,
   footer: PropTypes.node,
   toggleModal: PropTypes.func.isRequired,
+  isClosing: PropTypes.bool,
 };

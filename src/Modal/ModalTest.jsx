@@ -3,9 +3,18 @@ import Modal from './Modal';
 
 const Modaltest = () => {
   const [showModal, setShowModal] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleToggleModal = () => {
-    setShowModal((prev) => !prev);
+    if (showModal) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setShowModal(false);
+        setIsClosing(false);
+      }, 300);
+    } else {
+      setShowModal(true);
+    }
   };
 
   useEffect(() => {
@@ -37,6 +46,7 @@ const Modaltest = () => {
             body={<p>This is a custom body of the modal</p>}
             footer={<p>this is the footer of the modal</p>}
             toggleModal={handleToggleModal}
+            isClosing={isClosing}
           />
         )}
       </div>
