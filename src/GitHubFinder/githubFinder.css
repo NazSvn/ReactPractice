@@ -1,0 +1,98 @@
+.card-controller {
+  margin-bottom: 40px;
+}
+
+.card-input {
+  padding: 5px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.card-container {
+  position: relative;
+  display: flex;
+  width: 320px;
+  height: 299px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  box-shadow: 2px 2px 15px 0 hsl(0, 0%, 0%);
+  color: rgb(105, 87, 28);
+  overflow: hidden;
+}
+
+.card-header {
+  height: 300px;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.card-thumbnail {
+  height: 100px;
+  border-radius: 50%;
+
+}
+
+.card-user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+
+}
+
+.card-creation-time {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.card-creation-label {
+  padding: 6px 10px;
+  line-height: normal;
+  font-size: 0.8rem;
+}
+
+.card-content {
+  position: absolute;
+  right: 0px;
+}
+
+.card-content-box {
+  box-sizing: border-box;
+  width: 120px;
+  height: 99px;
+  background: #F5E8DF;
+  text-align: center;
+  padding-top: 28px;
+  transition: all .4s ease-in-out;
+}
+
+.card-content-box:hover {
+  background: #E1CFC2;
+  cursor: pointer;
+}
+
+.card-content-box:nth-child(2) {
+
+  margin: 1px 0;
+}
+
+span {
+  display: block;
+}
+
+.card-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-parameter {
+  font-size: 11px;
+}
