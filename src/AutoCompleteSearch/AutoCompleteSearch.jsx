@@ -1,14 +1,18 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
+import './AutocompleteSearch.css';
+import ContactCard from './ContactCard';
 
 const AutoCompleteSearch = () => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
+  const [selectedUser, setSelectedUser] = useState({});
   const [input, setInput] = useState('');
   const [error, setError] = useState(null);
-  const inputRef = useRef();
-
   const [loading, setLoading] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
+  const inputRef = useRef();
+  const suggestionsRef = useRef();
   const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
@@ -42,6 +46,7 @@ const AutoCompleteSearch = () => {
             .includes(input.toLowerCase().trim())
         );
         setSearch(filteredUsers);
+        setSelectedIndex(-1);
       } else {
         setSearch([]);
       }
@@ -50,19 +55,45 @@ const AutoCompleteSearch = () => {
   }, [users, input]);
 
   const handleKeydown = (e) => {
-    if (!e) return;
-    if (e.key === 'Escape') {
-      setInput('');
-      inputRef.current.blur();
+    switch (e.key) {
+      case 'Escape':
+        setInput('');
+        setSearch([]);
+        inputRef.current?.blur();
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev < search.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > -1 ? prev - 1 : prev));
+        break;
+      case 'Enter':
+        if (selectedIndex >= 0 && search[selectedIndex]) {
+          const selected = search[selectedIndex];
+          setSelectedUser(selected);
+          setInput('');
+          setSearch([]);
+          setSelectedIndex(-1);
+          inputRef.current?.blur();
+        }
+        break;
     }
+  };
+
+  const handleSearchClick = (user) => {
+    setSelectedUser(user);
+    setInput('');
+    setSelectedIndex(-1);
   };
 
   return (
     <>
-      <div>
-        {loading && !error && <div>Loading...</div>}
-        {error && <div>{error}</div>}
-        <div>
+      <div className='autocomplete-wrapper'>
+        <div className='autocomplete-input-wrapper'>
           <input
             ref={inputRef}
             type='text'
@@ -70,17 +101,51 @@ const AutoCompleteSearch = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeydown}
+            aria-label='Search users'
+            aria-expanded={search.length > 0}
+            aria-autocomplete='list'
+            className='autocomplete-input'
           />
         </div>
-        {input && !search.length && !loading && (
-          <div>Not matching user, please try again.</div>
+
+        {search.length > 0 && (
+          <ul
+            ref={suggestionsRef}
+            id='suggestions-list'
+            role='listbox'
+            className='user-list-wrapper'
+          >
+            {search.map((user, i) => (
+              <li
+                key={user.id}
+                role='option'
+                aria-selected={i === selectedIndex}
+                onClick={() => handleSearchClick(user)}
+                className={`user-list ${
+                  selectedIndex === i ? 'user-list selected' : ''
+                }`}
+              >
+                {user.firstName} {user.lastName}
+              </li>
+            ))}
+          </ul>
         )}
-        {search.map((user) => (
-          <div key={user.id}>
-            {user.firstName} {user.lastName}
+        {input && !search.length && !loading && (
+          <div className='autocomplete-not-user'>
+            Not matching user, please try again.
           </div>
-        ))}
-        {/* <AutocompleteUserData users={users} /> */}
+        )}
+        {selectedUser.id && !loading && !input && (
+          <div className='autocomplete-card-wrapper'>
+            <ContactCard user={selectedUser} />
+          </div>
+        )}
+        <div className='autocomplete-loading-error-wrapper'>
+          {loading && !error && (
+            <div className='autocomplete-loading'>Loading...</div>
+          )}
+          {error && <div className='autocomplete-error'>{error}</div>}
+        </div>
       </div>
     </>
   );
