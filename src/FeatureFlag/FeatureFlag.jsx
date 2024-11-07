@@ -6,7 +6,16 @@ const FeatureFlag = () => {
   console.log(loading, error, flags);
   return (
     <>
-      <div>Hi</div>
+      <div>
+        <div>
+          <button>
+            <header></header>
+            <main></main>
+            {/* theme */}
+            {/* content */}
+          </button>
+        </div>
+      </div>
     </>
   );
 };
