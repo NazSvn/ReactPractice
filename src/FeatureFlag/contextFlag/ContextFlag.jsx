@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FeatureFlagService from '../flagsData.js';
+import { FLAG_CONFIG } from '../flagsData.js';
 
 export const FeatureFlagsContext = createContext(null);
 
@@ -41,6 +42,14 @@ const FeatureFlagProvider = ({ children }) => {
   useEffect(() => {
     fetchFlags();
   }, []);
+
+  const isEnabled = (flagName) => {
+    if (!FLAG_CONFIG[flagName]) {
+      console.warn(`Feature flag "${flagName}" is not defined in FLAG_CONFIG`);
+      return false;
+    }
+    return state.flags[flagName] ?? FLAG_CONFIG[flagName].defaultValue;
+  };
 
   return (
     <FeatureFlagsContext.Provider
