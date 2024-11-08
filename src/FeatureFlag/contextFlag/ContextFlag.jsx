@@ -13,24 +13,28 @@ export const useFeatureFlag = (flagName) => {
 };
 
 const FeatureFlagProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [flags, setFlags] = useState({});
+  const [state, setState] = useState({
+    loading: true,
+    error: null,
+    flags: {},
+  });
 
   const fetchFlags = async () => {
     try {
-      setLoading(true);
-      setError(null);
-
       const response = await FeatureFlagService();
 
-      setFlags(response);
+      setState((prev) => ({
+        ...prev,
+        loading: false,
+        flags: response,
+      }));
     } catch (error) {
-      setError(error.message);
-      setFlags({});
-      throw new Error(error);
-    } finally {
-      setLoading(false);
+      setState((prev) => ({
+        ...prev,
+        loading: false,
+        error: error.message,
+        flags: {},
+      }));
     }
   };
 
@@ -39,7 +43,9 @@ const FeatureFlagProvider = ({ children }) => {
   }, []);
 
   return (
-    <FeatureFlagsContext.Provider value={{ loading, error, flags }}>
+    <FeatureFlagsContext.Provider
+      value={{ ...state, isEnabled, refreshFlags: fetchFlags }}
+    >
       {children}
     </FeatureFlagsContext.Provider>
   );
