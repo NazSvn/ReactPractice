@@ -1,7 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { FeatureFlagsContext, useFeatureFlag } from './contextFlag/ContextFlag';
+import { FeatureFlagsContext } from './contextFlag/ContextFlag';
 import useThemeToggle from '../LightDarkTheme/useThemeToggle';
 import { FLAGS } from './flagsData';
+import useFeatureFlag from './useFeatureFlag';
 
 const NewHeader = () => {
   return (
