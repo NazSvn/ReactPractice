@@ -42,6 +42,14 @@ const FeatureFlagProvider = ({ children }) => {
     fetchFlags();
   }, []);
 
+  const isEnabled = (flagName) => {
+    if (!FLAG_CONFIG[flagName]) {
+      console.warn(`Feature flag "${flagName}" is not defined in FLAG_CONFIG`);
+      return false;
+    }
+    return state.flags[flagName] ?? FLAG_CONFIG[flagName].defaultValue;
+  };
+
   return (
     <FeatureFlagsContext.Provider
       value={{ ...state, isEnabled, refreshFlags: fetchFlags }}
