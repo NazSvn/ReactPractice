@@ -30,12 +30,19 @@ export const FLAG_CONFIG = {
 
 const FeatureFlagService = () => {
   return new Promise((resolve, reject) => {
-    if (FLAGS) {
+    try {
+      const mockApiResponse = {
+        NEW_HEADER: true,
+        DARK_MODE: false,
+        BETA_FEATURES: true,
+        NEW_PRICING: Math.random() > 0.5,
+      };
       setTimeout(() => {
-        resolve(FLAGS);
+        resolve(mockApiResponse);
       }, 500);
-    } else {
-      reject('No flags found');
+    } catch (error) {
+      console.error('Failed to fetch feature flags:', error.message);
+      reject(new Error('Failed to fetch feature flags'));
     }
   });
 };
