@@ -1,8 +1,16 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import FeatureFlagService from '../flagsData.js';
 
 export const FeatureFlagsContext = createContext(null);
+
+export const useFeatureFlag = (flagName) => {
+  const context = useContext(FeatureFlagsContext);
+  if (!context) {
+    throw new Error('useFeatureFlag must be used within a FeatureFlagProvider');
+  }
+  return context.isEnabled(flagName);
+};
 
 const FeatureFlagProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
