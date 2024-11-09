@@ -3,17 +3,14 @@ import { FeatureFlagsContext } from './contextFlag/ContextFlag';
 import useThemeToggle from '../LightDarkTheme/useThemeToggle';
 import { FLAGS } from './flagsData';
 import useFeatureFlag from './useFeatureFlag';
-
-const NewHeader = () => {
-  return (
-    <>
-      <div>New Header</div>
-    </>
-  );
-};
+import './featureFlag.css';
+import NewHeader from './features/NewHeader';
+import { FiMoon, FiSettings, FiSun } from 'react-icons/fi';
+import NewBetaFeatures from './features/NewBetaFeatures';
+import NewPricing from './features/NewPricing';
 
 const FeatureFlag = () => {
-  const { loading, error } = useContext(FeatureFlagsContext);
+  const { loading, error, refreshFlags } = useContext(FeatureFlagsContext);
   const [theme, setTheme] = useThemeToggle('light');
 
   const isNewHeader = useFeatureFlag(FLAGS.NEW_HEADER);
@@ -43,24 +40,88 @@ const FeatureFlag = () => {
     );
 
   return (
-    <div
-      className='flags-wrapper'
-      data-theme={theme}
-    >
-      <button>toggle</button>
+    <div className=''>
+      <div className='flag-wrapper'>
+        <div
+          className='container'
+          data-theme={theme}
+        >
+          <button
+            className='toggleButton'
+            onClick={refreshFlags}
+          >
+            <FiSettings size={16} />
+            Toggle Features
+          </button>
 
-      {isNewHeader ? <NewHeader /> : <header>Old header</header>}
+          {isNewHeader ? (
+            <NewHeader />
+          ) : (
+            <header className='oldHeader'>
+              <div className='headerContent'>
+                <h1 className='headerTitle'>SuperStore</h1>
+                <nav className='nav'>
+                  <a
+                    href='#'
+                    className='navLink'
+                  >
+                    Shop
+                  </a>
+                  <a
+                    href='#'
+                    className='navLink'
+                  >
+                    Cart
+                  </a>
+                </nav>
+              </div>
+            </header>
+          )}
 
-      <main>
-        {isBetaFeatures ? <div>beta features</div> : <div>old content</div>}
+          <main className='main'>
+            {isBetaFeatures ? (
+              <NewBetaFeatures />
+            ) : (
+              <div className='oldProductGrid'>
+                {[1, 2].map((item) => (
+                  <div
+                    key={item}
+                    className='oldProductCard'
+                  >
+                    <div className='productImage'></div>
+                    <h3>Classic Product {item}</h3>
+                    <p>Basic product description</p>
+                  </div>
+                ))}
+              </div>
+            )}
 
-        {(isNewPricing && <div>New price list</div>) || (
-          <div>old price list</div>
-        )}
-      </main>
+            {isNewPricing ? (
+              <NewPricing />
+            ) : (
+              <div className='oldPricing'>
+                <h2 className='pricingTitle'>Standard Pricing</h2>
+                <div>
+                  <div className='pricingRow'>
+                    <span>Basic Plan</span>
+                    <span>$14.99/month</span>
+                  </div>
+                  <div className='pricingRow'>
+                    <span>Pro Plan</span>
+                    <span>$24.99/month</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </main>
 
-      <div>{isDarkMode ? 'dark mode on' : 'light mode on'}</div>
-      <div>some random content here</div>
+          <button className='themeToggle'>
+            {isDarkMode ? <FiMoon size={24} /> : <FiSun size={24} />}
+          </button>
+
+          <div className='footer'>© 2024 SuperStore. All rights reserved.</div>
+        </div>
+      </div>
     </div>
   );
 };
