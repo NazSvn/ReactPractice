@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FeatureFlagService from '../flagsData.js';
 import { FLAG_CONFIG } from '../flagsData.js';
 
-export const FeatureFlagsContext = createContext(null); 
+export const FeatureFlagsContext = createContext(null);
 
 const FeatureFlagProvider = ({ children }) => {
   const [state, setState] = useState({
@@ -31,6 +31,16 @@ const FeatureFlagProvider = ({ children }) => {
     }
   };
 
+  const toggleFlag = (flagName) => {
+    setState((prev) => ({
+      ...prev,
+      flags: {
+        ...prev.flags,
+        [flagName]: !prev.flags[flagName],
+      },
+    }));
+  };
+
   useEffect(() => {
     fetchFlags();
   }, []);
@@ -45,7 +55,7 @@ const FeatureFlagProvider = ({ children }) => {
 
   return (
     <FeatureFlagsContext.Provider
-      value={{ ...state, isEnabled, refreshFlags: fetchFlags }}
+      value={{ ...state, isEnabled, refreshFlags: toggleFlag }}
     >
       {children}
     </FeatureFlagsContext.Provider>
