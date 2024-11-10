@@ -53,6 +53,21 @@ const FeatureFlag = () => {
             <FiSettings size={16} />
             Toggle Features
           </button>
+          {buttonModal && (
+            <div
+              className={`controllers-container ${isClosing ? 'slideUp' : ''}`}
+            >
+              <button onClick={() => refreshFlags(FLAGS.NEW_HEADER)}>
+                {isNewHeader ? 'Old Header' : 'New Header'}
+              </button>
+              <button onClick={() => refreshFlags(FLAGS.BETA_FEATURES)}>
+                {isBetaFeatures ? 'Old features' : 'Beta Features'}
+              </button>
+              <button onClick={() => refreshFlags(FLAGS.NEW_PRICING)}>
+                {isNewPricing ? 'Old pricing' : 'New Pricing'}
+              </button>
+            </div>
+          )}
 
           {isNewHeader ? (
             <NewHeader />
@@ -115,7 +130,10 @@ const FeatureFlag = () => {
             )}
           </main>
 
-          <button className='themeToggle'>
+          <button
+            className='themeToggle'
+            onClick={handleThemeToggle}
+          >
             {isDarkMode ? <FiMoon size={24} /> : <FiSun size={24} />}
           </button>
 
