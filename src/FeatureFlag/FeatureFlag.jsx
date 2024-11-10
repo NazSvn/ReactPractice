@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FeatureFlagsContext } from './contextFlag/ContextFlag';
 import useThemeToggle from '../LightDarkTheme/useThemeToggle';
 import { FLAGS } from './flagsData';
@@ -12,6 +12,8 @@ import NewPricing from './features/NewPricing';
 const FeatureFlag = () => {
   const { loading, error, refreshFlags } = useContext(FeatureFlagsContext);
   const [theme, setTheme] = useThemeToggle('light');
+  const [buttonModal, setButtonModal] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const isNewHeader = useFeatureFlag(FLAGS.NEW_HEADER);
   const isDarkMode = useFeatureFlag(FLAGS.DARK_MODE);
@@ -25,6 +27,22 @@ const FeatureFlag = () => {
       setTheme('light');
     }
   }, [isDarkMode, setTheme]);
+
+  const handleThemeToggle = () => {
+    refreshFlags(FLAGS.DARK_MODE);
+  };
+
+  const handleButtonModal = () => {
+    if (buttonModal) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setButtonModal(false);
+        setIsClosing(false);
+      }, 300);
+    } else {
+      setButtonModal(true);
+    }
+  };
 
   if (loading)
     return (
@@ -48,7 +66,7 @@ const FeatureFlag = () => {
         >
           <button
             className='toggleButton'
-            onClick={refreshFlags}
+            onClick={handleButtonModal}
           >
             <FiSettings size={16} />
             Toggle Features
