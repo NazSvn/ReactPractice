@@ -32,9 +32,9 @@ const FeatureFlagService = () => {
   return new Promise((resolve, reject) => {
     try {
       const mockApiResponse = {
-        NEW_HEADER: true,
+        NEW_HEADER: false,
         DARK_MODE: false,
-        BETA_FEATURES: true,
+        BETA_FEATURES: false,
         NEW_PRICING: Math.random() > 0.5,
       };
       setTimeout(() => {
