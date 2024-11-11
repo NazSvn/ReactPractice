@@ -2,6 +2,7 @@ import Accordion from './Accordion/Accordian';
 import './App.css';
 import AutoCompleteSearch from './AutoCompleteSearch/AutoCompleteSearch';
 import RandomColor from './ColorGenerator/RandomColor';
+import CustomHooks from './CustomHooks/CustomHooks';
 import TabsTest from './CustomTabs/TabsTest';
 import FeatureFlagProvider from './FeatureFlag/contextFlag/ContextFlag';
 import FeatureFlag from './FeatureFlag/FeatureFlag';
@@ -20,51 +21,54 @@ function App() {
   return (
     <>
       {/* accorrdion element */}
-      {/* <Accordion /> */}
+      <Accordion />
 
       {/* Star Rating element */}
-      {/* <StarRating /> */}
+      <StarRating />
 
       {/* Color generator element */}
-      {/* <RandomColor /> */}
+      <RandomColor />
 
       {/* Image slider element */}
-      {/* <ImageSlider url={'https://picsum.photos/v2/list'} /> */}
+      <ImageSlider url={'https://picsum.photos/v2/list'} />
 
       {/* Load more element */}
-      {/* <LoadMore /> */}
+      <LoadMore />
 
       {/* Navigation Menu */}
-      {/* <NavigationMenu /> */}
+      <NavigationMenu />
 
       {/* Qr code generator */}
-      {/* <QrCodeGenerator /> */}
+      <QrCodeGenerator />
 
       {/* Light and dark theme */}
-      {/* <LightDarkTheme /> */}
+      <LightDarkTheme />
 
       {/* Scroll progress bar */}
-      {/* <ScrollProgress /> */}
+      <ScrollProgress />
 
       {/* Tabs  */}
-      {/* <TabsTest /> */}
+      <TabsTest />
 
       {/* Modal  */}
-      {/* <Modaltest /> */}
+      <Modaltest />
 
       {/* GitHub finder */}
-      {/* <GitHubFinder />   */}
+      <GitHubFinder />
 
       {/* Autocomplete search */}
-      {/* <AutoCompleteSearch /> */}
+      <AutoCompleteSearch />
 
       {/* Tic Tac Toe */}
-      {/* <TicTacToe  /> */}
+      <TicTacToe />
 
       {/* Feature flags */}
-       <FeatureFlagProvider>
+      <FeatureFlagProvider>
         <FeatureFlag />
-       </FeatureFlagProvider>
+      </FeatureFlagProvider>
+
+      {/* Custom Hooks */}
+      <CustomHooks />
     </>
   );
 }
