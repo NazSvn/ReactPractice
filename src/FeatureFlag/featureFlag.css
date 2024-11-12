@@ -26,6 +26,11 @@
   --border-dark: 5px;
 }
 
+.external-wrapper {
+  width: 100dvw;
+  position: relative;
+}
+
 .flag-wrapper {
   margin: 0 auto;
   width: 70dvw;
@@ -224,7 +229,8 @@
 }
 
 .toggleButton {
-  position: fixed;
+  position: absolute;
+  z-index: 2;
   top: 1rem;
   right: 1rem;
   padding: 0.5rem 1rem;
@@ -239,7 +245,7 @@
 }
 
 .themeToggle {
-  position: fixed;
+  position: absolute;
   bottom: 1rem;
   right: 1rem;
   padding: 0.4rem 0.5rem;
@@ -264,7 +270,8 @@
   border-radius: var(--border-radius);
   flex-direction: column;
   gap: 0.5rem;
-  position: fixed;
+  position: absolute;
+  z-index: 2;
   top: 4rem;
   right: 1rem;
   width: 162px;
