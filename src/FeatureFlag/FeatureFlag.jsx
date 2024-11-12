@@ -58,35 +58,40 @@ const FeatureFlag = () => {
     );
 
   return (
-    <div className=''>
+    <div className='external-wrapper'>
       <div className='flag-wrapper'>
+        <button
+          className='toggleButton'
+          onClick={handleButtonModal}
+        >
+          <FiSettings size={16} />
+          Toggle Features
+        </button>
+        {buttonModal && (
+          <div
+            className={`controllers-container ${isClosing ? 'slideUp' : ''}`}
+          >
+            <button onClick={() => refreshFlags(FLAGS.NEW_HEADER)}>
+              {isNewHeader ? 'Old Header' : 'New Header'}
+            </button>
+            <button onClick={() => refreshFlags(FLAGS.BETA_FEATURES)}>
+              {isBetaFeatures ? 'Old features' : 'Beta Features'}
+            </button>
+            <button onClick={() => refreshFlags(FLAGS.NEW_PRICING)}>
+              {isNewPricing ? 'Old pricing' : 'New Pricing'}
+            </button>
+          </div>
+        )}
+        <button
+          className='themeToggle'
+          onClick={handleThemeToggle}
+        >
+          {isDarkMode ? <FiMoon size={24} /> : <FiSun size={24} />}
+        </button>
         <div
           className='container'
           data-theme={theme}
         >
-          <button
-            className='toggleButton'
-            onClick={handleButtonModal}
-          >
-            <FiSettings size={16} />
-            Toggle Features
-          </button>
-          {buttonModal && (
-            <div
-              className={`controllers-container ${isClosing ? 'slideUp' : ''}`}
-            >
-              <button onClick={() => refreshFlags(FLAGS.NEW_HEADER)}>
-                {isNewHeader ? 'Old Header' : 'New Header'}
-              </button>
-              <button onClick={() => refreshFlags(FLAGS.BETA_FEATURES)}>
-                {isBetaFeatures ? 'Old features' : 'Beta Features'}
-              </button>
-              <button onClick={() => refreshFlags(FLAGS.NEW_PRICING)}>
-                {isNewPricing ? 'Old pricing' : 'New Pricing'}
-              </button>
-            </div>
-          )}
-
           {isNewHeader ? (
             <NewHeader />
           ) : (
@@ -147,14 +152,6 @@ const FeatureFlag = () => {
               </div>
             )}
           </main>
-
-          <button
-            className='themeToggle'
-            onClick={handleThemeToggle}
-          >
-            {isDarkMode ? <FiMoon size={24} /> : <FiSun size={24} />}
-          </button>
-
           <div className='footer'>© 2024 SuperStore. All rights reserved.</div>
         </div>
       </div>
