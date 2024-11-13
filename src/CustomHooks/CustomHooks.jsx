@@ -70,7 +70,7 @@ const CustomHooks = () => {
           style={containerStyle()}
         >
           <div style={quoteContentStyle()}>
-            <span style={quotationMarkStyle()}>"</span>
+            <span style={quotationMarkStyle()}>&quot;</span>
             <div style={quoteTextStyle()}>{quote.quote}</div>
             <div style={authorStyle()}>― {quote.author}</div>
           </div>
