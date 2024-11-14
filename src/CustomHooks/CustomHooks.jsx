@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import useFetch from './useFetch';
 import useOutsideClick from './useOutsideClick';
+import useWindowResize from './useWindowResize';
 
 const CustomHooks = () => {
   const { data, loading, error, refetch } = useFetch(
@@ -9,6 +10,8 @@ const CustomHooks = () => {
   const [quote, setQuote] = useState(null);
   const [showingQuote, setShowingQuote] = useState(false);
   const quoteRef = useRef();
+
+  const { width, height } = useWindowResize();
 
   const handleOutsideClick = useCallback(() => {
     setShowingQuote(false);
@@ -105,6 +108,16 @@ const CustomHooks = () => {
           Get a random quote
         </button>
       )}
+      <div>
+        <div>
+          <div>width: </div>
+          <div>height: </div>
+        </div>
+        <div>
+          <div> {width} px</div>
+          <div> {height} px</div>
+        </div>
+      </div>
     </div>
   );
 };
