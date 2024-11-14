@@ -108,7 +108,7 @@ const CustomHooks = () => {
           Get a random quote
         </button>
       )}
-      <div>
+      <div style={dimensionsStyle()}>
         <div>
           <div>width: </div>
           <div>height: </div>
@@ -197,6 +197,13 @@ const errorStyle = () => ({
   textAlign: 'center',
   padding: '20px',
   fontSize: '18px',
+});
+
+const dimensionsStyle = () => ({
+  display: 'flex',
+  fontSize: '0.8em',
+  marginTop: '50px',
+  gap: '5px',
 });
 
 export default CustomHooks;
